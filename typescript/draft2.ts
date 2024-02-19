@@ -1,5 +1,7 @@
-// 仏説摩訶般若波羅蜜多心経
-// The sutra in TypeScript
+/** 
+ * 仏説摩訶般若波羅蜜多心経
+ * The sutra in TypeScript
+ */
 
 import assert from "assert"
 
@@ -22,7 +24,7 @@ class Phenomenon extends Emptiness {
   }
 }
 
-class Diciple extends Emptiness {
+class Disciple extends Emptiness {
   public mind: Set<Phenomenon> = new Set()
   public nirvanaAchived: boolean = false
   public prajnaParamita: boolean = false
@@ -31,7 +33,7 @@ class Diciple extends Emptiness {
   }
 }
 
-class Buddha extends Diciple {
+class Buddha extends Disciple {
   private _observations: string[] = []
 
   constructor(public name: string) {
@@ -45,10 +47,10 @@ class Buddha extends Diciple {
     this._observations.push(observation)
   }
 
-  public expound(to: Diciple): void {
+  public expound(to: Disciple): void {
     console.log(`Listen, ${to.name}`)
     this._observations.forEach((teaching) => console.log(teaching))
-    // this._observations = []
+    this._observations = []
   }
 
   public has(thing: Phenomenon) {
@@ -96,9 +98,9 @@ const path = new Phenomenon("道")
 const wisdom = new Phenomenon("智")
 const attainment = new Phenomenon("得")
 
+// =========================== //
 const guanyin = new Buddha("観音菩薩")
-
-const shariputra = new Diciple("舎利子")
+const shariputra = new Disciple("舎利子")
 
 // He starts 行深般若波羅蜜多
 guanyin.observe(form)
@@ -107,7 +109,8 @@ guanyin.observe(perception)
 guanyin.observe(volition)
 guanyin.observe(consciousness)
 // now 照見五蘊皆空
-// UNIMPLEMENTED: 度一切苦厄
+// 度一切苦厄
+guanyin.mind.delete(suffering)
 // そもそも常世は苦しみの連続の世界であることと、
 // この悟りがそれから解放してくれたこともうまく表現したい
 guanyin.observe(eye)
@@ -158,7 +161,6 @@ delusions.forEach((delusion) => {
 })
 
 // 三世諸仏依般若波羅蜜多故得阿耨多羅三藐三菩提
-// 空を追求するやつはいつか仏になるらしい
 const buddhaPast = new Buddha("Shakyamuni")
 const buddhaPresent = new Buddha("Gu") // ?
 const buddhaFuture = new Buddha("Maitreya")
@@ -172,8 +174,10 @@ buddhas.forEach((buddha) => {
 })
 
 // 故知般若波羅蜜多是大神呪是大明呪是無上呪是無等等呪
-
+const prajnaParamita = new Phenomenon("般若波羅蜜多")
+shariputra.mind.add(prajnaParamita)
 // 能除一切苦真実不虚故説般若波羅蜜多呪
+shariputra.mind.delete(suffering)
 
 // 即説呪曰
 const mantra = "羯諦羯諦波羅羯諦波羅僧羯諦菩提薩婆訶"
