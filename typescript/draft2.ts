@@ -1,4 +1,4 @@
-import assert from "node:assert"
+import { assertEquals } from "jsr:@std/assert"
 
 class Emptiness {
 	public toString(): string {
@@ -36,7 +36,8 @@ class Buddha extends Disciple {
 	}
 
 	public observe(phenomenon: Phenomenon): void {
-		const observations = `${phenomenon.toString()} is no other than ${super.toString()}`
+		const observations =
+			`${phenomenon.toString()} is no other than ${super.toString()}`
 		this._observations.push(observations)
 	}
 
@@ -89,10 +90,10 @@ const buddhaPresent = new Buddha("gu")
 const buddhaFuture = new Buddha("Maitreya")
 const buddhas = [buddhaPast, buddhaPresent, buddhaFuture]
 buddhas.forEach((buddha) => {
-	assert.equal(buddha.prajnaParamita, true)
+	assertEquals(buddha.prajnaParamita, true)
 	const emptiness = new Phenomenon(null)
 	buddha.mind.add(emptiness)
-	assert.equal(buddha.has(emptiness), true)
+	assertEquals(buddha.has(emptiness), true)
 })
 
 const prajnaParamita = new Phenomenon("般若波羅蜜多")

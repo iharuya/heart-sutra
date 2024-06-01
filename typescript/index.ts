@@ -3,7 +3,7 @@
  * The sutra in TypeScript
  */
 
-import assert from "node:assert"
+import { assertEquals } from "jsr:@std/assert"
 
 /**
  * Define the world
@@ -77,17 +77,19 @@ class Buddha extends Disciple {
 	}
 
 	private getRoot(phenomenon: Phenomenon) {
-		let proto = Object.getPrototypeOf(phenomenon);
-		let lastProto = null;
+		let proto = Object.getPrototypeOf(phenomenon)
+		let lastProto = null
 		while (Object.getPrototypeOf(proto) !== null) {
-			lastProto = proto;
-			proto = Object.getPrototypeOf(proto);
+			lastProto = proto
+			proto = Object.getPrototypeOf(proto)
 		}
-		return lastProto;
+		return lastProto
 	}
 
 	public observe(phenomenon: Phenomenon): void {
-		const observation = `${phenomenon.toString()} is no other than ${this.getRoot(phenomenon).toString()}`
+		const observation = `${phenomenon.toString()} is no other than ${
+			this.getRoot(phenomenon).toString()
+		}`
 		this.observasions.push(observation)
 	}
 
@@ -100,14 +102,14 @@ class Buddha extends Disciple {
 
 	// 何かを持っていると感じるのは、それが自分自身のサブセットであると感じるとき
 	public has(phenomenon: Phenomenon) {
-		let proto = Object.getPrototypeOf(phenomenon);
+		let proto = Object.getPrototypeOf(phenomenon)
 		while (proto !== null) {
-		  if (proto === this.constructor.prototype) {
-			return true;
-		  }
-		  proto = Object.getPrototypeOf(proto);
+			if (proto === this.constructor.prototype) {
+				return true
+			}
+			proto = Object.getPrototypeOf(proto)
 		}
-		return false;
+		return false
 	}
 
 	public resetObservations(): void {
@@ -221,7 +223,7 @@ const fear = new Phenomenon("恐怖")
 avalokiteshvara.addMemory(obstacle)
 avalokiteshvara.addMemory(fear)
 if (!avalokiteshvara.has(anything)) {
-	assert.equal(avalokiteshvara.prajnaParamita, true)
+	assertEquals(avalokiteshvara.prajnaParamita, true)
 	avalokiteshvara.deleteMemory(obstacle)
 	avalokiteshvara.deleteMemory(fear)
 }
@@ -242,8 +244,8 @@ const buddhaPresent = new Buddha("Gu") // ?
 const buddhaFuture = new Buddha("Maitreya")
 const buddhas = [buddhaPast, buddhaPresent, buddhaFuture]
 for (const buddha of buddhas) {
-	assert.equal(buddha.prajnaParamita, true)
-	assert.equal(buddha.nirvanaAchived, true)
+	assertEquals(buddha.prajnaParamita, true)
+	assertEquals(buddha.nirvanaAchived, true)
 }
 
 // 故知般若波羅蜜多是大神呪是大明呪是無上呪是無等等呪
