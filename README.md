@@ -2,7 +2,7 @@
 
 この概念をプログラミング言語で表現する。
 
-The most famous sutra in Japan, expressed in programming languages.
+The most well-known sutra in Japan, expressed in programming languages.
 
 ## テキスト
 
